@@ -5,9 +5,11 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import com.springboot.entity.Author;
 import com.springboot.entity.Book;
 import com.springboot.error.BookNotFoundException;
 import com.springboot.error.BookUnSupportedFieldPatchException;
+import com.springboot.repository.AuthorRepository;
 import com.springboot.repository.BookRepository;
 
 import javax.validation.Valid;
@@ -19,18 +21,25 @@ import java.util.Map;
 @RestController
 @Validated
 @CrossOrigin(origins = "http://localhost:3000")
-public class BookController {
+public class AuthController {
 
 	@Autowired
-	private BookRepository repository;
+	private AuthorRepository repository;
 
 	// Find
-	@GetMapping("/books")
-	List<Book> findAll() {
+	@GetMapping("/authors")
+	List<Author> findAll() {
 		return repository.findAll();
 	}
+	
+	@GetMapping("/author/{id}")
+	Author findOne(@PathVariable Long id) {
+		System.out.println("**************Get book " + id + "********" + repository.getOne(id));
+		return repository.findById(id).get();
+		/*throw new BookNotFoundException(id);*/
+	}
 
-	// Save
+/*	// Save
 	@PostMapping("/books")
 	Book newBook(@Valid @RequestBody Book newBook) {
 		return repository.save(newBook);
@@ -39,8 +48,7 @@ public class BookController {
 	// Find
 	@GetMapping("/books/{id}")
 	Book findOne(@PathVariable @Min(1) Long id) {
-		return repository.getOne(id);
-		/*throw new BookNotFoundException(id);*/
+		throw new BookNotFoundException(id);
 	}
 
 	// Save or update
@@ -77,5 +85,5 @@ public class BookController {
 	@DeleteMapping("/books/{id}")
 	void deleteBook(@PathVariable Long id) {
 		repository.deleteById(id);
-	}
+	}*/
 }

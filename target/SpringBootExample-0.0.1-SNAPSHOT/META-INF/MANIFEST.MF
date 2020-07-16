@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: Spring Boot Example
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Trupty
+Implementation-Vendor-Id: com.examples.spring
+Created-By: Apache Maven 3.2.1
+Build-Jdk: 1.8.0_111
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/SpringBootExample
+
